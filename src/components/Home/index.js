@@ -31,7 +31,10 @@ class MessagesBase extends Component {
   componentDidMount() {
     this.setState({ loading: true });
 
-    this.props.firebase.messages().on('value', snapshot => {
+    this.props.firebase
+      .messages()
+      .orderByChild('createdAt')
+      .on('value', snapshot => {
       const messageObject = snapshot.val();
 
       if (messageObject) {
