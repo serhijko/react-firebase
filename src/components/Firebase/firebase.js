@@ -16,11 +16,16 @@ class Firebase {
     app.initializeApp(config);
 
     /* Helper */
-    
+
     this.serverValue = app.database.ServerValue;
     this.emailAuthProvider = app.auth.EmailAuthProvider;
+
+    /* Firebase API */
+
     this.auth = app.auth();
     this.db = app.database();
+
+    /* Social Sign In Method Provider */
 
     this.googleProvider = new app.auth.GoogleAuthProvider();
     this.facebookProvider = new app.auth.FacebookAuthProvider();
