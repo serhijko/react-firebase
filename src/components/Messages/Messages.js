@@ -13,6 +13,7 @@ class Messages extends Component {
       loading: false,
       messages: [],
       limit: 5,
+      length: 0,
     };
   }
 
@@ -39,9 +40,10 @@ class Messages extends Component {
         this.setState({
           messages: messageList,
           loading: false,
+          length: messageList.length,
         });
       } else {
-        this.setState({ messages: null, loading: false });
+        this.setState({ messages: null, loading: false, length: 0 });
       }
     });
   }
@@ -87,13 +89,13 @@ class Messages extends Component {
 
   render() {
     const { users } = this.props;
-    const { text, messages, loading } = this.state;
+    const { text, messages, loading, limit, length } = this.state;
 
     return (
       <AuthUserContext.Consumer>
         {authUser => (
           <div>
-            {!loading && messages && (
+            {!loading && messages && limit === length && (
               <button type="button" onClick={this.onNextPage}>
                 More
               </button>
