@@ -28,7 +28,7 @@ class MessageItem extends Component {
   };
 
   render() {
-    const { message, onRemoveMessage } = this.props;
+    const { message, onRemoveMessage, authUser } = this.props;
     const { editMode, editText } = this.state;
 
     return (
@@ -48,16 +48,16 @@ class MessageItem extends Component {
           </span>
         )}
 
-        {editMode ? (
+        {authUser.uid === message.userId && (editMode ? (
           <span>
             <button onClick={this.onSaveEditText}>Save</button>
             <button onClick={this.onToggleEditMode}>Reset</button>
           </span>
         ) : (
           <button onClick={this.onToggleEditMode}>Edit</button>
-        )}
+        ))}
 
-        {!editMode && (
+        {!editMode && authUser.uid === message.userId && (
           <button
             type="button"
             onClick={() => onRemoveMessage(message.uid)}

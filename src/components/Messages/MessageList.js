@@ -6,6 +6,7 @@ const MessageList = ({
   messages,
   onEditMessage,
   onRemoveMessage,
+  authUser,
 }) => (
   <ul>
     {messages.map(message => (
@@ -14,6 +15,7 @@ const MessageList = ({
         message={message}
         onEditMessage={onEditMessage}
         onRemoveMessage={onRemoveMessage}
+        authUser={authUser}
       />
     ))}
   </ul>
